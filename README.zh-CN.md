@@ -12,9 +12,9 @@
 
 本页面介绍 Scopelet 的 VS Code 发行版本。[公开文档与问题反馈仓库](https://github.com/yanke1311/scopelet-public)仅包含文档和图片，插件实现源码当前保持私有。
 
-![Scopelet 在 TypeScript 示例项目中搜索，左侧列出结果，右侧显示语法高亮预览](assets/screenshots/search-dark.png)
+![Scopelet 输入查询、键盘浏览命中代码，再用 Scope/glob 收窄范围](assets/demos/search.gif)
 
-*VS Code 中的真实文本搜索与语法高亮预览，使用小型示例项目。*
+*在 VS Code 示例项目中录制：搜索、键盘导航和 Scope/glob 筛选。[静态概览](assets/screenshots/search-dark.png)。*
 
 <details>
 <summary>浅色主题</summary>
@@ -26,7 +26,7 @@
 ## 功能
 
 - **四种搜索模式**：文件名模糊搜索、文本搜索、当前文档符号、光标处符号引用。
-- **控制搜索范围**：目录选择、包含/排除 glob、大小写、整词、正则选项，以及多行字面搜索。
+- **控制搜索范围**：多目录/glob chip、范围组合历史、路径补全、可折叠的 Include/Exclude chip，以及大小写、整词、正则和多行字面搜索。
 - **先预览再打开**：语法高亮、命中标记、独立预览主题、换行，以及大文件和超长行的有界预览。
 - **键盘优先**：选择结果、滚动预览、打开命中位置、恢复来源编辑器选区；按工作区保存搜索历史与预览偏好。
 
@@ -36,7 +36,7 @@
 
 当前已测试环境包括 **Apple Silicon Mac**，以及维护者已测试的 **Windows 和 WSL**。有记录的 macOS 验证包括 VS Code 1.136.2。WSL 以外的 Linux、Intel Mac、其他架构、SSH 与容器仍需验证。
 
-扩展标识为 **`ke-yan.scopelet`**。首次 Marketplace 发布仍待审核，目前尚无审核通过的市场版本。上线后可在 VS Code 扩展面板安装 **Scopelet**。已准备的安装包针对以下扩展宿主：
+扩展标识为 **`ke-yan.scopelet`**。可通过 **Extensions: Install from VSIX…** 安装对应平台的 VSIX；市场版本可用后，也可在 VS Code 扩展面板搜索安装 Scopelet。安装包针对以下扩展宿主：
 
 | 扩展宿主 | 安装包目标 |
 | --- | --- |
@@ -52,6 +52,8 @@
 2. 在命令面板运行 **Scopelet: Search Text** 或 **Scopelet: Find Files**。
 3. 输入查询，选择结果并查看预览。
 4. 按 **Enter** 打开结果，或按 **Esc** 返回原编辑器。
+
+Scope 可添加多个目录或 glob，例如 `src` 和 `packages/*/src/**`。相对条目与筛选使用界面显示的 **Relative to** 基准。Scope 内按 Enter 或点击 **Apply** 应用修改；Include/Exclude 内按 Enter 添加 chip，Ctrl+Enter 应用筛选。粘贴多行时保留 `*.{ts,tsx}` 这类逗号表达式。Filters 默认折叠；原来的目录历史清理命令也会清理范围组合历史。
 
 | 命令 | 用途 |
 | --- | --- |
@@ -122,16 +124,28 @@
 
 在设置中搜索 **Scopelet**。常用配置及其默认值：
 
+默认布局采用接近 0.1.7 的紧凑间距，结果文件名为 12px，辅助文字为 11px。
+
 ```json
 {
   "scopelet.maxResults": 2000,
   "scopelet.maxFileCandidates": 100000,
+  "scopelet.ui.fontSize": 12,
+  "scopelet.preview.fontSize": 0,
   "scopelet.preview.theme": "auto",
   "scopelet.preview.wordWrap": false
 }
 ```
 
-预览主题支持 `auto`、`github-light`、`github-dark`、`nord`、`monokai`。面板中按工作区保存的选择优先于默认值；通过 **Scopelet: Reset Preview Preferences** 恢复默认。命令面板也提供清理搜索历史、目录历史或全部历史的操作。
+`scopelet.ui.fontSize` 调整界面字号（11–20px，默认 12）；`scopelet.preview.fontSize` 独立调整代码预览字号（0 跟随 `editor.fontSize`，正数限制在 8–40px）。希望预览更紧凑可以设为 12。修改后关闭并重新打开 Scopelet 生效，不会改变编辑器字号。
+
+提供 **65 套内置预览主题，加上 Auto**，包括 **Catppuccin** 全部四款（Latte、Frappé、Macchiato、Mocha），以及 Dracula、Tokyo Night、Gruvbox、Rosé Pine、Kanagawa、Ayu、GitHub、Nord、Monokai、Solarized、Material 等。预览下拉按明暗分组，也可通过 **Scopelet: Select Preview Theme** 搜索选择。
+
+![预览主题在 Catppuccin Mocha、Catppuccin Latte 和 Tokyo Night 之间切换](assets/demos/themes.gif)
+
+*只改变预览配色，不修改编辑器主题。*
+
+主题随 VSIX 提供，选中时才读取对应本地文件，无需 CDN 或额外安装主题扩展。Auto 跟随编辑器明暗，高对比度模式优先保证可读性。面板中按工作区保存的选择优先于默认值；通过 **Scopelet: Reset Preview Preferences** 恢复默认。命令面板也提供清理搜索历史、目录历史或全部历史的操作。
 
 可用 `scopelet.keybindings` 调整面板内快捷键，例如 `{ "next": "ctrl+n", "previous": "ctrl+p" }`。支持的操作与可选命中配色见设置项说明。
 

@@ -12,9 +12,9 @@ Find a file, search its contents, inspect a symbol, or follow a reference—then
 
 This page describes the VS Code distribution of Scopelet. [Public documentation and issue reports](https://github.com/yanke1311/scopelet-public) are hosted in a documentation-and-artwork repository; the implementation source is currently private.
 
-![Scopelet searching TypeScript files, with matching results on the left and highlighted code on the right](assets/screenshots/search-dark.png)
+![Scopelet: type a query, navigate matching code, and narrow the scope with a glob](assets/demos/search.gif)
 
-*Text search and syntax-highlighted preview in VS Code, using a small example project.*
+*Recorded in VS Code with a small example project: search, keyboard navigation, and Scope/glob filtering. [Static overview](assets/screenshots/search-dark.png).*
 
 <details>
 <summary>Light theme</summary>
@@ -26,7 +26,7 @@ This page describes the VS Code distribution of Scopelet. [Public documentation 
 ## Features
 
 - **Four search modes:** fuzzy file search, text search, document symbols, and references at the cursor.
-- **Search your scope:** directory selection, include/exclude globs, case sensitivity, whole-word and regular-expression options, plus multiline literal search.
+- **Search your scope:** multiple directory/glob chips, grouped scope history, path completion, collapsible Include/Exclude chips, case sensitivity, whole-word and regular-expression options, plus multiline literal search.
 - **Preview before opening:** syntax highlighting, match markers, selectable preview themes, line wrapping, and bounded previews for large files and long lines.
 - **Stay on the keyboard:** navigate results, scroll the preview, open a match, or return to the original editor selection. Search history and preview preferences are saved per workspace.
 
@@ -36,7 +36,7 @@ Scopelet requires an editor with **VS Code API 1.126.0 or later** and a trusted 
 
 The tested environments are **macOS on Apple Silicon**, plus **Windows and WSL** tested by the maintainer. Recorded macOS validation includes VS Code 1.136.2. Linux outside WSL, Intel Macs, other architectures, SSH and containers still need validation.
 
-The extension identifier is **`ke-yan.scopelet`**. The first Marketplace release is awaiting approval; there is no approved Marketplace release yet. Once available, install **Scopelet** from the VS Code Extensions view. Prepared packages target these extension hosts:
+The extension identifier is **`ke-yan.scopelet`**. Install a matching VSIX through **Extensions: Install from VSIX…**, or find Scopelet in the VS Code Extensions view when the release is available on the Marketplace. Packages target these extension hosts:
 
 | Extension host | Package target |
 | --- | --- |
@@ -52,6 +52,8 @@ Early trial builds used `scopelet-local.scopelet`. That is a different extension
 2. Open the Command Palette and run **Scopelet: Search Text** or **Scopelet: Find Files**.
 3. Enter a query, move through the results, and inspect the preview.
 4. Press **Enter** to open the selected result, or **Esc** to return to your original editor.
+
+Scope accepts multiple directories or glob patterns, such as `src` and `packages/*/src/**`. Relative entries and filters use the displayed **Relative to** base. Use Enter in Scope or **Apply** to apply changes; Include/Exclude use Enter to add a chip and Ctrl+Enter to apply. Multiline paste preserves brace expressions such as `*.{ts,tsx}`. Filters stay collapsed until needed, and the existing directory-history clear command also clears saved scope groups.
 
 | Command | What it does |
 | --- | --- |
@@ -122,16 +124,28 @@ Merge these into your existing VSCodeVim settings, replacing any conflicting map
 
 Search for **Scopelet** in Settings. Common settings, shown with their defaults:
 
+The default layout uses compact spacing similar to 0.1.7, with 12px result names and 11px secondary text.
+
 ```json
 {
   "scopelet.maxResults": 2000,
   "scopelet.maxFileCandidates": 100000,
+  "scopelet.ui.fontSize": 12,
+  "scopelet.preview.fontSize": 0,
   "scopelet.preview.theme": "auto",
   "scopelet.preview.wordWrap": false
 }
 ```
 
-Preview themes: `auto`, `github-light`, `github-dark`, `nord`, and `monokai`. Per-workspace choices made in the panel take precedence over the defaults; use **Scopelet: Reset Preview Preferences** to reset them. Command Palette actions also clear search history, directory history, or both.
+`scopelet.ui.fontSize` adjusts interface text (11–20px, default 12). `scopelet.preview.fontSize` adjusts code independently (0 follows `editor.fontSize`; positive values are clamped to 8–40px). For a compact preview, try 12. Close and reopen Scopelet after changing either setting; your editor font is unchanged.
+
+Choose from **65 bundled preview themes plus Auto**, including all four **Catppuccin** flavors (Latte, Frappé, Macchiato, Mocha), Dracula, Tokyo Night, Gruvbox, Rosé Pine, Kanagawa, Ayu, GitHub, Nord, Monokai, Solarized, Material and more. The preview selector groups themes by dark/light appearance; **Scopelet: Select Preview Theme** opens a searchable picker.
+
+![Preview theme switching between Catppuccin Mocha, Catppuccin Latte, and Tokyo Night](assets/demos/themes.gif)
+
+*Change the preview palette without changing your editor theme.*
+
+Themes are included in the VSIX and loaded individually from local files when selected—no CDN or additional theme extension is required. Auto follows the editor's light/dark appearance; high-contrast mode prioritizes readability. Per-workspace choices made in the panel take precedence over the defaults; use **Scopelet: Reset Preview Preferences** to reset them. Command Palette actions also clear search history, directory history, or both.
 
 Panel shortcuts can be customized through `scopelet.keybindings`, for example `{ "next": "ctrl+n", "previous": "ctrl+p" }`. The Settings descriptions list the available actions and optional match colors.
 

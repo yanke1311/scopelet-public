@@ -1,5 +1,19 @@
 # Changelog
 
+## 0.1.8
+
+- Add independent interface and preview font sizes, a compact 12px interface default, and font-aware result rows and preview navigation.
+- Bring default control heights, spacing, and secondary text closer to 0.1.7: a 39px search field, 36px pane headings, and 11px secondary text.
+
+- Refine the search-first layout, result hierarchy, inline match highlighting, preview headers, and high-contrast handling.
+- Add editable Scope chips for multiple directories and globs, grouped scope history, path completion, and an explicit relative-path base. Existing directory and search history remain compatible.
+- Replace Include/Exclude text areas with multi-rule chips; keep filters collapsed by default and show applied/pending state. Preserve comma expressions and multiline paste.
+- Preserve explicit ignored directories when combining scopes, deduplicate overlapping file paths, and establish a missing base when selecting a directory.
+- Expand preview choices to all 65 bundled Shiki themes plus Auto, including Catppuccin's four flavors. Group the selector by appearance and provide searchable names in the Command Palette.
+- Load theme files locally on demand, cache them, reject stale theme responses, and include third-party theme license notices.
+- Improve empty-state actions, result-limit feedback, narrow-window layouts, and preview navigation for long lines and large files.
+- Replace the README's main screenshot with a recorded search demonstration, add a theme-switching animation, and refresh the light-theme screenshot.
+
 ## 0.1.7
 
 - Clarify the VS Code Marketplace distribution and pending approval status; identify the public repository as documentation and support materials, not implementation source.

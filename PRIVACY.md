@@ -1,6 +1,6 @@
 # Scopelet privacy notice
 
-Applies to Scopelet 0.1.7. Publisher: `ke-yan` (display name `ke.yan`). This notice describes data handling; it does not imply that Marketplace publication has been approved.
+Applies to Scopelet 0.1.8. Publisher: `ke-yan` (display name `ke.yan`).
 
 ## English
 
@@ -10,12 +10,12 @@ Scopelet reads files in the search scope you choose and processes queries, filen
 
 ### Saved state and controls
 
-Search history can contain query text, directory paths and search options. Search history and directory history each retain up to 20 entries in VS Code workspace state. Scopelet also stores search options and preview preferences. These values are not encrypted by Scopelet and are subject to access controls, backups and retention of the host environment. There is no automatic time-based expiry: older history entries are evicted as new entries are added, or you can clear them. Closing the panel does not clear saved workspace state. Without an open workspace, this state is kept in memory for the extension-host session.
+Search history can contain query text, directory paths, glob patterns, relative-path bases and search options. Scope history stores groups of directories/globs and their base; it remains compatible with earlier directory history. Search history and scope history each retain up to 20 entries in VS Code workspace state. Scopelet also stores search options and preview preferences. These values are not encrypted by Scopelet and are subject to access controls, backups and retention of the host environment. There is no automatic time-based expiry: older history entries are evicted as new entries are added, or you can clear them. Closing the panel does not clear saved workspace state. Without an open workspace, this state is kept in memory for the extension-host session.
 
 Use the Command Palette to run:
 
 - **Scopelet: Clear Search History** — clear saved searches.
-- **Scopelet: Clear Directory History** — clear saved directory history.
+- **Scopelet: Clear Directory History** — clear saved scope groups and earlier directory history.
 - **Scopelet: Clear Workspace History** — clear both histories.
 - **Scopelet: Reset Preview Preferences** — reset saved preview preferences.
 
@@ -41,7 +41,7 @@ Scopelet 读取你选择的搜索范围，处理查询、文件名、路径、�
 
 ### 保存的数据与控制方式
 
-搜索历史可能包含查询文本、目录路径和选项。搜索历史、目录历史各自在 VS Code 工作区状态中最多保留 20 条；另外保存搜索选项和预览偏好。Scopelet 不自行加密这些数据，访问权限、备份和存储保留受宿主环境控制。没有按时间自动过期的机制：新增历史会挤出最旧的条目，也可以手动清理。关闭面板不会清除已保存的工作区状态。没有打开工作区时，这些状态仅保留在当前扩展宿主会话的内存中。
+搜索历史可能包含查询文本、目录路径、glob、相对路径基准和选项。范围历史保存目录/glob 组合及其基准，并兼容旧目录历史。搜索历史、范围历史各自在 VS Code 工作区状态中最多保留 20 条；另外保存搜索选项和预览偏好。Scopelet 不自行加密这些数据，访问权限、备份和存储保留受宿主环境控制。没有按时间自动过期的机制：新增历史会挤出最旧的条目，也可以手动清理。关闭面板不会清除已保存的工作区状态。没有打开工作区时，这些状态仅保留在当前扩展宿主会话的内存中。
 
 通过命令面板可执行 **Scopelet: Clear Search History**、**Clear Directory History**、**Clear Workspace History** 清除对应历史；**Reset Preview Preferences** 重置预览偏好。清除历史不会重置搜索选项或预览偏好，也不会删除环境备份或第三方日志。查询会作为进程参数传给 ripgrep，可能被符合宿主权限的本地进程检查或诊断工具看到。不希望敏感内容以此方式暴露或进入后续保存的搜索记录时，请避免用它作为查询。
 
