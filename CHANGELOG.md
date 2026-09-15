@@ -1,5 +1,12 @@
 # Changelog
 
+## 0.1.9
+
+- Expand the recent-scopes dropdown to the Scope field width and wrap long paths without clipping.
+- Add per-entry Remove actions and Shift+Delete for selected recent scopes, preserving the current search and input draft.
+- Preserve relative directory and glob names in history titles instead of reducing patterns to a wildcard.
+- Simplify Scope and Include/Exclude chips and remove the nested input focus border while retaining compact defaults.
+
 ## 0.1.8
 
 - Add independent interface and preview font sizes, a compact 12px interface default, and font-aware result rows and preview navigation.

@@ -55,6 +55,8 @@ Early trial builds used `scopelet-local.scopelet`. That is a different extension
 
 Scope accepts multiple directories or glob patterns, such as `src` and `packages/*/src/**`. Relative entries and filters use the displayed **Relative to** base. Use Enter in Scope or **Apply** to apply changes; Include/Exclude use Enter to add a chip and Ctrl+Enter to apply. Multiline paste preserves brace expressions such as `*.{ts,tsx}`. Filters stay collapsed until needed, and the existing directory-history clear command also clears saved scope groups.
 
+Recent scopes show full paths, wrapping when needed. Click **Remove** beside an entry to remove it, or select it with the arrow keys and press **Shift+Delete**. This removes only the saved scope entry, without changing the current search or deleting files.
+
 | Command | What it does |
 | --- | --- |
 | `Scopelet: Find Files` | Find files by fuzzy name matching |

@@ -55,6 +55,8 @@
 
 Scope 可添加多个目录或 glob，例如 `src` 和 `packages/*/src/**`。相对条目与筛选使用界面显示的 **Relative to** 基准。Scope 内按 Enter 或点击 **Apply** 应用修改；Include/Exclude 内按 Enter 添加 chip，Ctrl+Enter 应用筛选。粘贴多行时保留 `*.{ts,tsx}` 这类逗号表达式。Filters 默认折叠；原来的目录历史清理命令也会清理范围组合历史。
 
+Recent scopes 显示完整路径，较长时自动换行。点击单条记录右侧的 **Remove**，或用方向键选中后按 **Shift+Delete**，即可删除该范围历史；不会改变当前搜索，也不会删除文件。
+
 | 命令 | 用途 |
 | --- | --- |
 | `Scopelet: Find Files` | 按文件名模糊查找 |
