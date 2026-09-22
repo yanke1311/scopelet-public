@@ -1,5 +1,10 @@
 # Changelog
 
+## 0.1.10
+
+- Restore search-input focus when navigating results with Ctrl+J/K from checkboxes, buttons, or dropdowns, so Enter opens the selected result without another mouse click.
+- Preserve native control keys and add regression coverage for search options, Wrap, the theme selector, and the Filters button.
+
 ## 0.1.9
 
 - Expand the recent-scopes dropdown to the Scope field width and wrap long paths without clipping.

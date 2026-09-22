@@ -1,6 +1,6 @@
 # Scopelet privacy notice
 
-Applies to Scopelet 0.1.9. Publisher: `ke-yan` (display name `ke.yan`).
+Applies to Scopelet 0.1.10. Publisher: `ke-yan` (display name `ke.yan`).
 
 ## English
 

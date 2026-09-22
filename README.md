@@ -82,7 +82,7 @@ These shortcuts work inside the Scopelet panel. `Ctrl` means the Control key, in
 
 | Key | Action |
 | --- | --- |
-| `Ctrl+J` / `Ctrl+K` | Select the next / previous result |
+| `Ctrl+J` / `Ctrl+K` | Select the next / previous result; return focus from option controls to the search input so Enter can open it |
 | `Enter` | Open a result, accept a directory, or restore a history entry |
 | `Ctrl+Enter` | Apply pending filters; otherwise remember the completed text search |
 | `Ctrl+U` / `Ctrl+D` | Scroll the preview up / down by half a page |
