@@ -32,7 +32,9 @@ This page describes the VS Code distribution of Scopelet. [Public documentation 
 
 ## Requirements and installation
 
-Scopelet requires an editor with **VS Code API 1.126.0 or later** and a trusted filesystem workspace. Symbol and reference search require a language extension that provides those features.
+Scopelet requires an editor with **VS Code API 1.100.0 or later** and a trusted filesystem workspace. Symbol and reference search require a language extension that provides those features.
+
+Trae CN with API 1.107.1 passed the isolated extension-host regression suite on macOS. API 1.100.0 is the declared compatibility floor; official VS Code 1.100.0 has not been directly runtime-tested. For editors accepting only universal VSIX files, the universal package includes binaries for macOS ARM64, Windows x64, and WSL/Linux x64.
 
 The tested environments are **macOS on Apple Silicon**, plus **Windows and WSL** tested by the maintainer. Recorded macOS validation includes VS Code 1.136.2. Linux outside WSL, Intel Macs, other architectures, SSH and containers still need validation.
 

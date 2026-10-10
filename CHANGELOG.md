@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.1.11
+
+- Lower the declared minimum VS Code API version to 1.100.0, allowing installation in editors such as Trae CN with API 1.107.1.
+- Load the ESM ripgrep dependency asynchronously and target Node 18 syntax for the extension bundle, avoiding CommonJS-only loading on older hosts.
+- Update compatibility documentation and provide macOS ARM64, Windows x64, WSL/Linux x64, and universal packages. Trae CN 1.107.1 passed the isolated host regression suite on macOS; official VS Code 1.100.0 has not been directly runtime-tested.
+
 ## 0.1.10
 
 - Restore search-input focus when navigating results with Ctrl+J/K from checkboxes, buttons, or dropdowns, so Enter opens the selected result without another mouse click.

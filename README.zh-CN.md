@@ -32,7 +32,9 @@
 
 ## 环境与安装
 
-需要支持 **VS Code API 1.126.0 或更高版本**的编辑器，以及受信任的文件系统工作区。符号和引用功能依赖相应语言扩展提供的能力。
+需要支持 **VS Code API 1.100.0 或更高版本**的编辑器，以及受信任的文件系统工作区。符号和引用功能依赖相应语言扩展提供的能力。
+
+Trae CN（API 1.107.1）已在 macOS 独立环境通过扩展宿主回归。1.100.0 是声明的兼容下限，尚未直接运行验证官方 VS Code 1.100.0。仅接受 universal VSIX 的编辑器可使用 universal 包，其中包含 macOS ARM64、Windows x64 和 WSL/Linux x64 的二进制。
 
 当前已测试环境包括 **Apple Silicon Mac**，以及维护者已测试的 **Windows 和 WSL**。有记录的 macOS 验证包括 VS Code 1.136.2。WSL 以外的 Linux、Intel Mac、其他架构、SSH 与容器仍需验证。
 
